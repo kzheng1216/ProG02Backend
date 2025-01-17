@@ -1,0 +1,13 @@
+
+[app]
+server = ":9882"
+
+[database]
+host = "106.15.33.153"
+port = 3306
+username = "mysql"
+password = "Zaq1@wsx"
+db_name = "mydb01_dev"
+
+
+# mysql:Zaq1@wsx@tcp(106.15.33.153:3306)/mydb01_dev
