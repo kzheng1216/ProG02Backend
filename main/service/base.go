@@ -1,5 +1,10 @@
 package service
 
+import (
+	"context"
+	"github.com/go-redis/redis/v8"
+)
+
 type (
 	User struct {
 		ID    int    `json:"id"`
@@ -18,8 +23,31 @@ type (
 )
 
 const (
-	constUser123 = "user123"
-	constPass123 = "pass123"
+	constUser123  = "user123"
+	constPass123  = "pass123"
+	redisHost     = "106.15.33.153:6379"
+	redisDB       = 0
+	redisUsername = "mystic"
+	redisPassword = "Zaq1@wsx"
 )
 
 var secretKey = []byte("abcd1234") // 密钥，用于签名 JWT
+var ctx = context.Background()
+
+type RedisClient struct {
+	client *redis.Client
+}
+
+func NewRedisClient() *RedisClient {
+	addr := redisHost
+	username := redisUsername
+	password := redisPassword
+	db := redisDB
+	client := redis.NewClient(&redis.Options{
+		Addr:     addr,
+		Username: username,
+		Password: password,
+		DB:       db,
+	})
+	return &RedisClient{client: client}
+}
